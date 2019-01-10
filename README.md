@@ -1,4 +1,4 @@
-# gatsby-source-pixabay
+# gatsby-source-flickr
 
 This source plugin for Gatsby will make images from [Flickr](https://flickr.com/) available in GraphQL queries.
 
