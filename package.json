@@ -12,7 +12,7 @@
   "license": "MIT",
   "scripts": {
     "build": "babel src --out-dir . --ignore __tests__",
-    "prepublish": "yarn build",
+    "prepublishOnly": "yarn build",
     "format": "prettier --write \"src/**/*.js\""
   },
   "dependencies": {
