@@ -41,6 +41,7 @@ The plugin will add defaults for certain other fields:
 | method         | flickr.photos.search                                                                                                                                                                                                                   | the plugin expects the call to use the photo search api                           |
 | extras         | description, license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o | these are the fields (all the available ones as of the time of writing)           |
 | per_page       | 500                                                                                                                                                                                                                                    | the number of photos per page (API call pagination) - 500 is the current maximum) |
+| page           | 1                                                                                                                                                                                                                                      | the starting page                                                                 |
 | format         | json                                                                                                                                                                                                                                   | the plugin expects json                                                           |
 | nojsoncallback | 1                                                                                                                                                                                                                                      | the plugin expects json - if this is not set then flickr returns jsonp            |
 
@@ -87,7 +88,5 @@ query PhotoQuery {
 ```
 
 ## Limitations
-
-The plugin does not handle the Flickr API pagination. It assumes that all the images required will be in the first page (and sets that first page to the maximum size).
 
 The plugin was written to simply allow me to provide a source to my own flickr stream for my own site. It may or may not suit anyone else's needs :)
