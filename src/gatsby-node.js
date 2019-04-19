@@ -69,6 +69,14 @@ exports.sourceNodes = async (
     return fixed;
   };
 
+  const unwrap = data => {
+    if (data.hasOwnProperty("photoset")) {
+      return data.photoset;
+    }
+
+    return data.photos;
+  };
+
   const callFlickr = async options => {
     const url = `https://api.flickr.com/services/rest/?${queryString.stringify(
       options
@@ -77,7 +85,9 @@ exports.sourceNodes = async (
     const response = await fetch(url);
     const data = await response.json();
 
-    data.photos.photo.forEach(raw => {
+    const photos = unwrap(data);
+
+    photos.photo.forEach(raw => {
       const photo = fixPhoto(raw);
 
       createNode({
@@ -93,10 +103,10 @@ exports.sourceNodes = async (
       });
     });
 
-    if (data.photos.page < data.photos.pages)
+    if (photos.page < photos.pages)
       await callFlickr({
         ...options,
-        page: data.photos.page + 1
+        page: photos.page + 1
       });
   };
 

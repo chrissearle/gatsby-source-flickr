@@ -32,7 +32,7 @@ module.exports = {
 
 ## Configuration Options
 
-The configuration options for this plugin mirror the [Flickr photo search API call options](https://www.flickr.com/services/api/flickr.photos.search.html). The only **required** option is the `api_key`.
+The configuration options for this plugin mirror the flickr method called. The default is flickr.photos.search - [Flickr photo search API call options](https://www.flickr.com/services/api/flickr.photos.search.html). The only **required** option is the `api_key`.
 
 The plugin will add defaults for certain other fields:
 
@@ -55,13 +55,50 @@ module.exports = {
     {
       resolve: "gatsby-source-flickr",
       options: {
-        key: process.env.FLICKR_API_KEY,
+        api_key: process.env.FLICKR_API_KEY,
         user_id: process.env.FLICKR_USER_ID
       }
     }
   ]
 };
 ```
+
+### Other methods
+
+The plugin can use any API method that returns as an object the following structure:
+
+```json
+{
+  "KEY": {
+    "photos": [],
+    "page": 1,
+    "pages": 3
+  }
+}
+```
+
+To do this - override the method option.
+
+* You must provide any mandatory fields that the selected method requires.
+* It currently understands KEY of either "photos" or "photoset" - this seems to cover most of the methods I've tested.
+* It will pass the same defaults as above.
+
+An example - get a user's album:
+
+```js
+    {
+      resolve: 'gatsby-source-flickr',
+      options: {
+        api_key: process.env.FLICKR_API_KEY,
+        user_id: process.env.FLICKR_USER_ID,
+        method: 'flickr.photosets.getPhotos',
+        photoset_id: NUMERIC_ALBUM_ID,
+      },
+    },
+```
+
+where NUMERIC_ALBUM_ID is the number taken from the album URL https://www.flickr.com/photos/USERNAME/albums/NUMERIC_ALBUM_ID
+
 
 ## Querying Flickr Images
 
