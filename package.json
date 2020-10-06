@@ -12,13 +12,14 @@
   "license": "MIT",
   "scripts": {
     "build": "babel src --out-dir . --ignore __tests__",
-    "prepublishOnly": "cross-env NODE_ENV=production yarn build",
+    "prepare": "cross-env NODE_ENV=production npm run build",
     "format": "prettier --write \"src/**/*.js\""
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
+    "core-js": "^3.6.5",
     "node-fetch": "^2.3.0",
-    "query-string": "^6.2.0"
+    "query-string": "^6.2.0",
+    "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
