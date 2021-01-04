@@ -16,16 +16,17 @@
     "format": "prettier --write \"src/**/*.js\""
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
-    "node-fetch": "^2.3.0",
-    "query-string": "^6.2.0"
+    "core-js": "3.8.2",
+    "node-fetch": "2.6.1",
+    "query-string": "6.13.8",
+    "regenerator-runtime": "0.13.7"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.3",
-    "cross-env": "^5.2.0",
-    "prettier": "^1.15.2"
+    "@babel/cli": "7.12.10",
+    "@babel/core": "7.12.10",
+    "@babel/preset-env": "7.12.11",
+    "cross-env": "7.0.3",
+    "prettier": "2.2.1"
   },
   "version": "0.0.3"
 }

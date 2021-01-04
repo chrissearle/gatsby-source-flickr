@@ -1,4 +1,5 @@
-require("@babel/polyfill");
+require("core-js/stable");
+require("regenerator-runtime/runtime");
 const fetch = require("node-fetch");
 const queryString = require("query-string");
 
