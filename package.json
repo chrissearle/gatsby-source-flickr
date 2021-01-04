@@ -12,7 +12,7 @@
   "license": "MIT",
   "scripts": {
     "build": "babel src --out-dir . --ignore __tests__",
-    "prepublishOnly": "cross-env NODE_ENV=production yarn build",
+    "prepare": "cross-env NODE_ENV=production npm run build",
     "format": "prettier --write \"src/**/*.js\""
   },
   "dependencies": {

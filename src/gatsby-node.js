@@ -1,7 +1,7 @@
-require("core-js/stable");
-require("regenerator-runtime/runtime");
-const fetch = require("node-fetch");
-const queryString = require("query-string");
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import fetch from "node-fetch";
+import queryString from "query-string";
 
 exports.sourceNodes = async (
   { boundActionCreators: { createNode }, createNodeId, createContentDigest },
