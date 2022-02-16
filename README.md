@@ -6,6 +6,11 @@ This source plugin for Gatsby will make images from [Flickr](https://flickr.com/
 
 This source plugin is **heavily** based on [Jason Lengstorf's](https://github.com/jlengstorf) [gatsby-source-pixabay](https://github.com/jlengstorf/gatsby-source-pixabay)
 
+## Versions
+
+0.0.4 worked with gatsby v2.
+0.0.5 should work with gatsby v3 and above (tested with v4)
+
 ## Installation
 
 ```sh

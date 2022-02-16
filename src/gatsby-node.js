@@ -4,13 +4,13 @@ import fetch from "node-fetch";
 import queryString from "query-string";
 
 exports.sourceNodes = async (
-  { boundActionCreators: { createNode }, createNodeId, createContentDigest },
+  { actions: { createNode }, createNodeId, createContentDigest },
   { plugins, ...options }
 ) => {
   const sizes = ["sq", "t", "s", "q", "m", "n", "z,", "c", "l", "z"];
 
   // The flickr API has some issues when put into GraphQL - create a suitable version
-  const fixPhoto = photo => {
+  const fixPhoto = (photo) => {
     const fixed = photo;
 
     // Don't name crash with node.id
@@ -19,7 +19,7 @@ exports.sourceNodes = async (
 
     // Some fields can come down as either string or number. GraphQL doesn't like that. Force everything to number
 
-    sizes.forEach(suffix => {
+    sizes.forEach((suffix) => {
       if (fixed.hasOwnProperty(`height_${suffix}`)) {
         fixed[`height_${suffix}`] = parseInt(fixed[`height_${suffix}`]);
       }
@@ -70,7 +70,7 @@ exports.sourceNodes = async (
     return fixed;
   };
 
-  const unwrap = data => {
+  const unwrap = (data) => {
     if (data.hasOwnProperty("photoset")) {
       return data.photoset;
     }
@@ -78,7 +78,7 @@ exports.sourceNodes = async (
     return data.photos;
   };
 
-  const callFlickr = async options => {
+  const callFlickr = async (options) => {
     const url = `https://api.flickr.com/services/rest/?${queryString.stringify(
       options
     )}`;
@@ -88,7 +88,7 @@ exports.sourceNodes = async (
 
     const photos = unwrap(data);
 
-    photos.photo.forEach(raw => {
+    photos.photo.forEach((raw) => {
       const photo = fixPhoto(raw);
 
       createNode({
@@ -99,15 +99,15 @@ exports.sourceNodes = async (
         internal: {
           type: "FlickrPhoto",
           content: JSON.stringify(photo),
-          contentDigest: createContentDigest(photo)
-        }
+          contentDigest: createContentDigest(photo),
+        },
       });
     });
 
     if (photos.page < photos.pages)
       await callFlickr({
         ...options,
-        page: photos.page + 1
+        page: photos.page + 1,
       });
   };
 
@@ -119,6 +119,6 @@ exports.sourceNodes = async (
     page: 1,
     format: "json",
     nojsoncallback: 1,
-    ...options
+    ...options,
   });
 };
